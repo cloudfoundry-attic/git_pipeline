@@ -10,14 +10,14 @@ class PipelineFileLoader
 
     git_repo = build_git_repo(pipeline_hash["git_repo"])
 
-    static_stages = pipeline_hash["stages"].map do |stage_hash|
+    stages = pipeline_hash["stages"].map do |stage_hash|
       git_log = build_git_log(stage_hash["git_log"], git_repo)
       stage   = build_stage(stage_hash, git_log)
     end
 
-    stages = build_stages(static_stages, git_repo)
+    versions = build_versions(git_repo)
 
-    build_pipeline(pipeline_hash, git_repo, stages)
+    build_pipeline(pipeline_hash, git_repo, stages, versions)
   end
 
   private
@@ -28,19 +28,13 @@ class PipelineFileLoader
     raise LoadError, e.message
   end
 
-  def build_pipeline(hash, git_repo, stages)
-    id   = File.basename(@file_path, ".yml")
-    name = hash["name"]
-    Pipeline.new(id, name, git_repo, stages)
+  def build_pipeline(hash, git_repo, stages, versions)
+    id = File.basename(@file_path, ".yml")
+    Pipeline.new(id, hash["name"], git_repo, stages, versions)
   end
 
   def build_git_repo(hash)
     GitRepo.new(hash["local_dir"], hash["github_url"])
-  end
-
-  def build_stages(static_stages, git_repo)
-    fetcher = StageVersionFetcher.new(git_repo)
-    StageCollection.new(static_stages, fetcher)
   end
 
   def build_stage(hash, git_log)
@@ -50,5 +44,10 @@ class PipelineFileLoader
   def build_git_log(hash, git_repo)
     GitLog.from_symbolic_range(
       git_repo, hash["from"], hash["to"])
+  end
+
+  def build_versions(git_repo)
+    VersionCollection.new(
+      VersionFetcher.new(git_repo))
   end
 end

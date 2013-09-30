@@ -18,6 +18,12 @@
   margin-bottom: 0;
 }
 
-.pipeline > .description {
+.pipeline > .switch-links {
   margin-bottom: 30px;
+}
+
+.pipeline > .switch-links a+a {
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid #ccc;
 }

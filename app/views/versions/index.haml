@@ -1,14 +1,14 @@
 = render partial: "partials/pipeline_description", 
-  locals: {pipeline: @pipeline, type: :pipeline}
+  locals: {pipeline: @pipeline, type: :versions}
 
-%ul.stages
-  - @pipeline.stages.each do |stage|
-    - log = stage.git_log
-    %li.stage
-      %h2.name= stage.name
+%ul.versions
+  - @pipeline.versions.each do |version|
+    - log = version.git_log
+    %li.version
+      %h2.name= version.name
       = render partial: "partials/git_log_stats", locals: {log: log, linker: @linker}
 
-      - if stage.pending_changes?
+      - if version.pending_changes?
         = render partial: "partials/git_commits", locals: {log: log, linker: @linker}
         - if log.more_commits?
           %p.more-git-commits ...

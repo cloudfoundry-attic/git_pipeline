@@ -1,4 +1,6 @@
 GitPipeline::Application.routes.draw do
   root to: "pipelines#index"
-  resources :pipelines
+  resources :pipelines do
+    resources :versions
+  end
 end
