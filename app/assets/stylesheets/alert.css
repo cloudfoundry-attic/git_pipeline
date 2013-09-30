@@ -1,0 +1,6 @@
+.alert { 
+  border-radius: 15px;
+  border-color: #ddd;
+}
+
+.alert > p  { background: transparent; }

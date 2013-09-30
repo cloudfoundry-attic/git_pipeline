@@ -4,6 +4,7 @@
   padding-bottom: 30px;
 }
 
+/* Pipeline stripe */
 #timeline-stripe {
   position: absolute;
   z-index: -1;
@@ -14,9 +15,7 @@
   background: #ddd;
 }
 
-h1, h2, p, li {
-  background: #fff;
-}
+h1, h2, p, li { background: #fff; }
 
 code {
   padding: 0 2px;
@@ -25,14 +24,9 @@ code {
   border-radius: 4px;
 }
 
-code a {
-  color: #c7254e;
-}
+/* Make code links red */
+code a       { color: #c7254e; }
+code a:hover { color: #aa0e35; }
 
-code a:hover {
-  color: #aa0e35;
-}
-
-a {
-  text-decoration: underline;
-}
+/* Emphasize page links */
+a { text-decoration: underline; }

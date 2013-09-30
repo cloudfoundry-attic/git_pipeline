@@ -1,4 +1,6 @@
 class GitRepoCloner
+  class Error < RuntimeError; end
+
   def initialize
     @lock = Mutex.new
   end
@@ -22,5 +24,7 @@ class GitRepoCloner
       FileUtils.rm_rf(dir)
       Git.clone(url, dir)
     end
+  rescue Git::GitExecuteError => e
+    raise Error, e.message
   end
 end

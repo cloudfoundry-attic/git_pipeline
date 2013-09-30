@@ -1,14 +1,17 @@
 .pipeline
   %h1= @pipeline.name
   %p.description
-    %span.last-fetched
-      Last fetched
-      = time_ago_in_words(@pipeline.git_repo.last_fetched_at)
-      ago
+    - if lfa = @pipeline.git_repo.last_fetched_at
+      %span.last-fetched
+        = "Last fetched #{time_ago_in_words(lfa)} ago"
     %span.github-url
       from
       - url = @pipeline.git_repo.github_url
       = link_to(url, url)
+
+  - if err = @git_repo_clone_error
+    .alert.alert-warning
+      %p= err.message
 
   %ul.stages
     - @pipeline.stages.each do |stage|
