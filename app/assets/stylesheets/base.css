@@ -1,0 +1,38 @@
+.container {
+  position: relative;
+  max-width: 600px;
+  padding-bottom: 30px;
+}
+
+#timeline-stripe {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 42px;
+  height: 100%;
+  width: 1px;
+  background: #ddd;
+}
+
+h1, h2, p, li {
+  background: #fff;
+}
+
+code {
+  padding: 0 2px;
+  background: #f9f2f4;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+code a {
+  color: #c7254e;
+}
+
+code a:hover {
+  color: #aa0e35;
+}
+
+a {
+  text-decoration: underline;
+}

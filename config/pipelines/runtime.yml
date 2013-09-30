@@ -1,0 +1,25 @@
+name: Runtime pipeline
+git_repo:
+  local_dir: /tmp/cf-release
+  github_url: https://github.com/cloudfoundry/cf-release
+
+stages:
+  - name: "[tabasco] Pending deploy"
+    git_log:
+      from: origin/master
+      to:   origin/runtime-deployed
+
+  - name: "[tabasco] Pending YETI"
+    git_log:
+      from: origin/runtime-deployed
+      to:   origin/runtime-passed
+
+  - name: "[a1] Pending deploy"
+    git_log:
+      from: origin/runtime-passed
+      to:   origin/acceptance-deployed
+
+  - name: "[a1] Pending YETI and release"
+    git_log:
+      from: origin/acceptance-deployed
+      to:   origin/release-candidate

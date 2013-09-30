@@ -1,0 +1,10 @@
+name: BOSH pipeline
+git_repo:
+  local_dir: /tmp/bosh
+  github_url: https://github.com/cloudfoundry/bosh
+
+stages:
+  - name: "[develop] Pending merge"
+    git_log:
+      from: origin/develop
+      to:   origin/master

@@ -1,0 +1,16 @@
+%ul.stats
+  %li.symbolic-range
+    between
+    %code
+      - ref = log.symbolic_from
+      = link_to(ref, @linker.ref_url(ref))
+    and
+    %code
+      - ref = log.symbolic_to
+      = link_to(ref, @linker.ref_url(ref))
+
+  %li.commits-no
+    = link_to(@linker.compare_url(log.symbolic_from, log.symbolic_to)) do
+      = ">" if log.more_commits?
+      = log.git_commits.size
+      commit(s)

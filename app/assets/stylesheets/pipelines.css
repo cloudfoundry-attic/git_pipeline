@@ -1,0 +1,23 @@
+.pipelines {
+  margin: 0;
+  padding: 0;
+}
+
+.pipelines > li {
+  list-style-type: none;
+  margin: 10px 15px 0;
+}
+
+.pipelines > li > .name a {
+  font-weight: normal;
+  font-size: 20px;
+  color: #000;
+}
+
+.pipelines > li > p {
+  margin-bottom: 0;
+}
+
+.pipeline > .description {
+  margin-bottom: 30px;
+}

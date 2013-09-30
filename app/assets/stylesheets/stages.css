@@ -1,0 +1,40 @@
+.stages { 
+  padding: 0; 
+  margin: 0 0 30px;
+}
+
+.stage {
+  list-style-type: none;
+  background: transparent;
+  padding: 15px 0;
+  margin-bottom: 15px;
+}
+
+.stage > .name {
+  float: left;
+  margin: 0 0 15px 0;
+  padding: 7px 10px;
+  background: #000;
+  border-radius: 15px;
+  font-size: 15px;
+  font-weight: normal;
+  color: #fff;
+}
+
+.stage > .stats {
+  clear: both;
+  margin-bottom: 15px;
+  padding-left: 15px;
+  font-size: 12px;
+}
+
+.stage > .stats code {
+  padding: 0 2px;
+  font-size: 10px;
+}
+
+.stage .more-git-commits,
+.stage .no-pending-changes {
+  margin-bottom: 0;
+  color: #ccc;
+}

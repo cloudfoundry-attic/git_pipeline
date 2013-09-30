@@ -1,0 +1,5 @@
+%ul.pipelines
+  - @pipelines.each do |pipeline|
+    %li
+      %strong.name
+        = link_to(pipeline.name, pipeline_path(pipeline))

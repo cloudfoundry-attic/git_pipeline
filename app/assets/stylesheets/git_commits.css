@@ -1,0 +1,25 @@
+.git-commits { 
+  padding: 0; 
+  margin: 0;
+}
+
+.git-commit {
+  list-style-type: none;
+  margin: 7px 0;
+  line-height: 16px;
+}
+
+.git-commits .sha { 
+  margin-right: 10px;
+  font-size: 12px;
+  font-style: Courier New;
+}
+
+.git-commits .message-first-line { 
+  font-size: 15px; 
+}
+
+.git-commits .message-rest { 
+  display: none;
+  font-size: 10px;
+}

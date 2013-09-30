@@ -1,0 +1,25 @@
+.pipeline
+  %h1= @pipeline.name
+  %p.description
+    %span.last-fetched
+      Last fetched
+      = time_ago_in_words(@pipeline.git_repo.last_fetched_at)
+      ago
+    %span.github-url
+      from
+      - url = @pipeline.git_repo.github_url
+      = link_to(url, url)
+
+  %ul.stages
+    - @pipeline.stages.each do |stage|
+      - log = stage.git_log
+      %li.stage
+        %h2.name= stage.name
+        = render partial: "git_log_stats", locals: {log: log, linker: @linker}
+
+        - if stage.pending_changes?
+          = render partial: "git_commits", locals: {log: log, linker: @linker}
+          - if log.more_commits?
+            %p.more-git-commits ...
+        - else
+          %p.no-pending-changes No pending changes.
