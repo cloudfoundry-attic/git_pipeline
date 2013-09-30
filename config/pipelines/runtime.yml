@@ -23,3 +23,8 @@ stages:
     git_log:
       from: origin/release-candidate
       to:   origin/acceptance-deployed
+
+  - name: "[prod] Pending deploy"
+    git_log:
+      from: origin/deployed-to-prod
+      to:   origin/release-candidate
