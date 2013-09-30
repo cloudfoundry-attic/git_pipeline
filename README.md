@@ -11,4 +11,4 @@ cf login
 cf push
 ```
 
-e.g. http://git_pipeline.cfapps.io
+e.g. [http://git_pipeline.cfapps.io](http://git_pipeline.cfapps.io)
