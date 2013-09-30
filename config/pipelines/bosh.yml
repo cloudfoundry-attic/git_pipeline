@@ -6,5 +6,5 @@ git_repo:
 stages:
   - name: "[develop] Pending merge"
     git_log:
-      from: origin/develop
-      to:   origin/master
+      from: origin/master
+      to:   origin/develop

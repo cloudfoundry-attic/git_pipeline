@@ -6,20 +6,20 @@ git_repo:
 stages:
   - name: "[tabasco] Pending deploy"
     git_log:
-      from: origin/master
-      to:   origin/runtime-deployed
+      from: origin/runtime-deployed
+      to:   origin/master
 
   - name: "[tabasco] Pending YETI"
     git_log:
-      from: origin/runtime-deployed
-      to:   origin/runtime-passed
+      from: origin/runtime-passed
+      to:   origin/runtime-deployed
 
   - name: "[a1] Pending deploy"
     git_log:
-      from: origin/runtime-passed
-      to:   origin/acceptance-deployed
+      from: origin/acceptance-deployed
+      to:   origin/runtime-passed
 
   - name: "[a1] Pending YETI and release"
     git_log:
-      from: origin/acceptance-deployed
-      to:   origin/release-candidate
+      from: origin/release-candidate
+      to:   origin/acceptance-deployed
