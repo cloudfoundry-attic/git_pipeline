@@ -10,10 +10,8 @@
     %meta(http-equiv="Content-Script-Type" content="text/javascript")
     %meta(http-equiv="Content-Style-Type" content="text/css")
     %meta(http-equiv="X-UA-Compatible" content="IE=8")
-    
-    - if params[:refresh]
-      %meta(http-equiv="refresh" content="5")
-      
+
+    = refresher.meta_tag
     = csrf_meta_tag
 
     = stylesheet_link_tag "application"
@@ -25,6 +23,11 @@
         %nav
           %ul.nav.navbar-nav
             %li= link_to "Pipelines", root_path
+
       #timeline-stripe
       #content
         = yield
+
+      #refresh-info
+        = refresher.stats
+        = refresher.toggle_link
