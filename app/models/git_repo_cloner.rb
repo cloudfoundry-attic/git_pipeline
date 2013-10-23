@@ -21,7 +21,6 @@ class GitRepoCloner
     if Dir.exist?(dir)
       Git.open(dir).fetch
     else
-      FileUtils.rm_rf(dir)
       Git.clone(url, dir)
     end
   rescue Git::GitExecuteError => e
