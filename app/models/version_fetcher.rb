@@ -1,6 +1,7 @@
 class VersionFetcher
-  def initialize(git_repo)
+  def initialize(git_repo, name_pattern)
     @git_repo = git_repo
+    @name_pattern = name_pattern
   end
 
   def fetch(num)
@@ -19,8 +20,19 @@ class VersionFetcher
   end
 
   def fetched_git_tags
-    grepo    = Git.open(@git_repo.local_dir)
-    git_tags = grepo.tags.map { |gt| GitTag.new(gt.name, gt.sha) }
+    grepo = Git.open(@git_repo.local_dir)
+
+    git_tags = grepo.tags.map do |gt|
+      version = extract_version_from_name(gt.name)
+      GitTag.new(gt.name, gt.sha, version)
+    end
+
     git_tags.select(&:versioned?).sort_by(&:version)
+  end
+
+  def extract_version_from_name(name)
+    if matched = name.match(@name_pattern)
+      matched[:number]
+    end
   end
 end

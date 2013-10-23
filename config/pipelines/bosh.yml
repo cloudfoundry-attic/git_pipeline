@@ -8,3 +8,6 @@ stages:
     git_log:
       from: origin/master
       to:   origin/develop
+
+versions:
+  name_pattern: \Astable-(?<number>\d+)\z

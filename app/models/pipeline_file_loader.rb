@@ -15,7 +15,7 @@ class PipelineFileLoader
       stage   = build_stage(stage_hash, git_log)
     end
 
-    versions = build_versions(git_repo)
+    versions = build_versions(pipeline_hash["versions"], git_repo)
 
     build_pipeline(pipeline_hash, git_repo, stages, versions)
   end
@@ -42,12 +42,12 @@ class PipelineFileLoader
   end
 
   def build_git_log(hash, git_repo)
-    GitLog.from_symbolic_range(
-      git_repo, hash["from"], hash["to"])
+    GitLog.from_symbolic_range(git_repo, hash["from"], hash["to"])
   end
 
-  def build_versions(git_repo)
-    VersionCollection.new(
-      VersionFetcher.new(git_repo))
+  def build_versions(hash, git_repo)
+    name_pattern    = Regexp.new(hash["name_pattern"])
+    version_fetcher = VersionFetcher.new(git_repo, name_pattern)
+    VersionCollection.new(version_fetcher)
   end
 end

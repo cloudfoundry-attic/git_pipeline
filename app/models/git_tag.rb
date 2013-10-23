@@ -1,16 +1,13 @@
 class GitTag
-  attr_reader :name, :sha
+  attr_reader :name, :sha, :version
 
-  def initialize(name, sha)
+  def initialize(name, sha, version)
     @name = name
     @sha = sha
+    @version = version
   end
 
   def versioned?
-    @name =~ /\Av\d+(-.*)?\z/
-  end
-
-  def version
-    @name.scan(/\d+/)[0].to_i
+    !@version.nil?
   end
 end

@@ -28,3 +28,6 @@ stages:
     git_log:
       from: origin/deployed-to-prod
       to:   origin/release-candidate
+
+versions:
+  name_pattern: \Av(?<number>\d+)(-.*)?\z
