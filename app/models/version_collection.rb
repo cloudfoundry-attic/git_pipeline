@@ -8,7 +8,7 @@ class VersionCollection
   end
 
   def each(*args, &blk)
-    @versions ||= @version_fetcher.fetch(4)
+    @versions ||= @version_fetcher.fetch(25)
     @versions.each(*args, &blk)
   end
 end
