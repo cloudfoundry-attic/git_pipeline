@@ -32,7 +32,7 @@ class VersionFetcher
 
   def extract_version_from_name(name)
     if matched = name.match(@name_pattern)
-      matched[:number]
+      matched[:number].to_i
     end
   end
 end
