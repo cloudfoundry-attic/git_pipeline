@@ -38,7 +38,7 @@ class PipelineFileLoader
   end
 
   def build_stage(hash, git_log)
-    Stage.new(hash["name"], git_log)
+    Stage.new(hash["name"], hash["ci_url"], git_log)
   end
 
   def build_git_log(hash, git_repo)

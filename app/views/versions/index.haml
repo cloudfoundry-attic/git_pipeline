@@ -4,8 +4,10 @@
 %ul.versions
   - @pipeline.versions.each do |version|
     - log = version.git_log
+
     %li.version
       %h2.name= version.name
+
       = render partial: "partials/git_log_stats", locals: {log: log, linker: @linker}
 
       - if version.pending_changes?

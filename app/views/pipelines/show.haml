@@ -4,8 +4,11 @@
 %ul.stages
   - @pipeline.stages.each do |stage|
     - log = stage.git_log
+
     %li.stage
       %h2.name= stage.name
+
+      = render partial: "pipelines/stage_info", locals: {stage: stage}
       = render partial: "partials/git_log_stats", locals: {log: log, linker: @linker}
 
       - if stage.pending_changes?

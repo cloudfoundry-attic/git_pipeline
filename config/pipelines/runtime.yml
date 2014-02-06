@@ -9,7 +9,7 @@ stages:
       from: origin/runtime-deployed
       to:   origin/master
 
-  - name: "[tabasco] Pending YETI"
+  - name: "[tabasco] Pending acceptance tests"
     git_log:
       from: origin/runtime-passed
       to:   origin/runtime-deployed
@@ -19,7 +19,7 @@ stages:
       from: origin/acceptance-deployed
       to:   origin/runtime-passed
 
-  - name: "[a1] Pending YETI and release"
+  - name: "[a1] Pending acceptance tests and release"
     git_log:
       from: origin/release-candidate
       to:   origin/acceptance-deployed

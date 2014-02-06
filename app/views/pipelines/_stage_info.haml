@@ -1,0 +1,5 @@
+- if stage.has_ci_url?
+  %ul.info
+    %li.ci-url
+      CI URL:
+      = link_to(stage.ci_url, stage.ci_url)
