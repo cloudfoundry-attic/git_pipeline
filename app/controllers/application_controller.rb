@@ -9,12 +9,15 @@ class ApplicationController < ActionController::Base
 
   def git_repo_clone(git_repo)
     @@git_repo_cloner ||= GitRepoCloner.new(Rails.logger)
-    @@git_repo_cloner.clone(git_repo, avoid_fetch: param_true?(:avoid_fetch))
+    @@git_repo_cloner.clone(git_repo, {
+      avoid_fetch: param_bool(:avoid_fetch),
+      force_fetch: param_bool(:force_fetch),
+    })
   rescue GitRepoCloner::Error => e
     @git_repo_clone_error = e
   end
 
-  def param_true?(param_name)
+  def param_bool(param_name)
     %w(1 t true y yes).include?(params[param_name])
   end
 

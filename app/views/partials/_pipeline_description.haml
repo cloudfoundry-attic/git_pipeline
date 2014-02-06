@@ -5,6 +5,8 @@
     - if lfa = pipeline.git_repo.last_fetched_at
       %span.last-fetched
         = "Last fetched #{time_ago_in_words(lfa)} ago"
+        = link_to("(refetch)", force_fetch: "1")
+
     %span.github-url
       from
       - url = pipeline.git_repo.remote_url
