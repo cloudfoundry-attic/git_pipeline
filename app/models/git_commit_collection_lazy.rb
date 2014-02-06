@@ -1,4 +1,4 @@
-class GitCommitCollection
+class GitCommitCollectionLazy
   include Enumerable
 
   # wtf enumerable?

@@ -3,7 +3,7 @@ class GitLog
 
   def self.from_symbolic_range(git_repo, symbolic_from, symbolic_to)
     fetcher     = GitCommitFetcher.new(git_repo, symbolic_from, symbolic_to)
-    git_commits = GitCommitCollection.new(fetcher)
+    git_commits = GitCommitCollectionLazy.new(fetcher)
     new(symbolic_from, symbolic_to, git_commits)
   end
 
