@@ -1,0 +1,11 @@
+.git-log-stats {
+  clear: both;
+  margin-bottom: 15px;
+  padding-left: 15px;
+  font-size: 12px;
+}
+
+.git-log-stats code {
+  padding: 0 2px;
+  font-size: 10px;
+}

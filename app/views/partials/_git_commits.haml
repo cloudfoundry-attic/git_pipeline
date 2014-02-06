@@ -1,13 +1,20 @@
-%ul.git-commits
-  - log.git_commits.each do |git_commit|
-    %li.git-commit{title: git_commit.message_rest}
-      %code.sha
-        - sha = git_commit.short_sha
-        = link_to(sha, @linker.commit_url(sha))
+- if log.git_commits_available?
+  %ul.git-commits
+    - log.git_commits.each do |git_commit|
+      %li.git-commit{title: git_commit.message_rest}
+        %code.sha
+          - sha = git_commit.short_sha
+          = link_to(sha, linker.commit_url(sha))
 
-      %span.message-first-line<
-        = git_commit.message_first_line
-        = "..." if git_commit.message_rest.present?
+        %span.message-first-line<
+          = git_commit.message_first_line
+          = "..." if git_commit.message_rest.present?
 
-      %span.author-initials{title: git_commit.author_name}
-        = "(#{git_commit.author_initials})"
+        %span.author-initials{title: git_commit.author_name}
+          = "(#{git_commit.author_initials})"
+
+  - if log.more_commits?
+    %p.more-git-commits ...
+
+- else
+  %p.not-available-git-commits Not available

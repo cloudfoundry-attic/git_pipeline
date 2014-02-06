@@ -1,19 +1,26 @@
-= render partial: "partials/pipeline_description", 
+- linker = @linker_factory.linker_for_git_repo(@pipeline.git_repo)
+
+= render partial: "partials/pipeline_description",
   locals: {pipeline: @pipeline, type: :pipeline}
 
 %ul.stages
   - @pipeline.stages.each do |stage|
-    - log = stage.git_log
-
     %li.stage
       %h2.name= stage.name
 
-      = render partial: "pipelines/stage_info", locals: {stage: stage}
-      = render partial: "partials/git_log_stats", locals: {log: log, linker: @linker}
+      = render partial: "pipelines/stage_info",
+        locals: {stage: stage}
+
+      = render partial: "partials/git_log_stats",
+        locals: {log: stage.git_log, linker: linker}
 
       - if stage.pending_changes?
-        = render partial: "partials/git_commits", locals: {log: log, linker: @linker}
-        - if log.more_commits?
-          %p.more-git-commits ...
+        = render partial: "partials/git_commits",
+          locals: {log: stage.git_log, linker: linker}
+
+        - if !@hide_submodules
+          = render partial: "partials/git_submodule_changes",
+            locals: {log: stage.git_submodule_change_log, linker_factory: @linker_factory}
+
       - else
         %p.no-pending-changes No pending changes.

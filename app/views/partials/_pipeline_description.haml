@@ -7,7 +7,7 @@
         = "Last fetched #{time_ago_in_words(lfa)} ago"
     %span.github-url
       from
-      - url = pipeline.git_repo.github_url
+      - url = pipeline.git_repo.remote_url
       = link_to(url, url)
 
   %p.switch-links

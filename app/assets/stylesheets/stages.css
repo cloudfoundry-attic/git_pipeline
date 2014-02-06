@@ -21,19 +21,8 @@
   color: #fff;
 }
 
-.stage > .stats {
-  clear: both;
-  margin-bottom: 15px;
-  padding-left: 15px;
-  font-size: 12px;
-}
-
-.stage > .stats code {
-  padding: 0 2px;
-  font-size: 10px;
-}
-
 .stage .more-git-commits,
+.stage .not-available-git-commits,
 .stage .no-pending-changes {
   margin-bottom: 0;
   color: #ccc;

@@ -1,18 +1,27 @@
-= render partial: "partials/pipeline_description", 
+- linker = @linker_factory.linker_for_git_repo(@pipeline.git_repo)
+
+= render partial: "partials/pipeline_description",
   locals: {pipeline: @pipeline, type: :versions}
 
 %ul.versions
-  - @pipeline.versions.each do |version|
+  - @pipeline.versions.each_with_index do |version, i|
     - log = version.git_log
 
     %li.version
       %h2.name= version.name
 
-      = render partial: "partials/git_log_stats", locals: {log: log, linker: @linker}
+      = render partial: "partials/git_log_stats",
+        locals: {log: log, linker: linker}
 
       - if version.pending_changes?
-        = render partial: "partials/git_commits", locals: {log: log, linker: @linker}
-        - if log.more_commits?
-          %p.more-git-commits ...
+        = render partial: "partials/git_commits",
+          locals: {log: log, linker: linker}
+
+        - if i <= @max_with_submodules
+          = render partial: "partials/git_submodule_changes",
+            locals: {log: version.git_submodule_change_log, linker_factory: @linker_factory}
+        - else
+          %p.hidden-git-submodule-changes Did not try to follow submodule changes.
+
       - else
         %p.no-pending-changes No changes.

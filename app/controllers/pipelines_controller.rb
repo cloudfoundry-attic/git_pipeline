@@ -5,7 +5,8 @@ class PipelinesController < ApplicationController
 
   def show
     @pipeline = load_collection.find_by_id(params[:id])
-    @linker   = GithubLinker.new(@pipeline.git_repo.github_url)
+    @linker_factory = LinkerFactory.new
+    @hide_submodules = param_true?(:hide_submodules)
     git_repo_clone(@pipeline.git_repo)
   end
 end

@@ -1,0 +1,51 @@
+.git-submodule-changes {
+  padding: 0;
+  margin: 0 0 0 50px;
+}
+
+.git-submodule-change {
+  padding: 15px 0;
+  margin: 0 0 -15px 0;
+  background: none;
+  list-style-type: none;
+  line-height: 16px;
+}
+
+.git-submodule-change > .path {
+  float: left;
+  margin: 0 0 15px -34px;
+  padding: 2px 7px;
+  background: #000;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: normal;
+  color: #fff;
+}
+
+.git-submodule-change > .path > .hole {
+  float: left;
+  color: #fff;
+  font-size: 15px;
+  height: 16px;
+  width: 10px;
+}
+
+.git-submodule-change > .path > .line {
+  float: left;
+  position: relative;
+  top: 5px;
+  left: -6px;
+  border-left: 1px solid #ddd;
+}
+
+.git-submodule-change > .git-commits,
+.git-submodule-change > p {
+  clear: both;
+}
+
+.stage .more-git-commits,
+.stage .no-pending-changes {
+  margin-bottom: 0;
+  color: #ccc;
+}
+

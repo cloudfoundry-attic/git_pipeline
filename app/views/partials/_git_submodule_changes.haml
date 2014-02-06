@@ -1,0 +1,15 @@
+%ul.git-submodule-changes
+  - log.aggregate_git_submodule_changes.each do |git_submodule_change|
+    %li.git-submodule-change{title: git_submodule_change.path}
+      %h3.path
+        %span.hole ●
+        %span.line &nbsp;
+        = git_submodule_change.path
+
+      - linker = linker_factory.linker_for_git_repo(git_submodule_change.git_repo)
+
+      = render partial: "partials/git_log_stats",
+        locals: {log: git_submodule_change.git_log, linker: linker}
+
+      = render partial: "partials/git_commits",
+        locals: {log: git_submodule_change.git_log, linker: linker}

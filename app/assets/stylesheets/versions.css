@@ -21,20 +21,14 @@
   color: #fff;
 }
 
-.version > .stats {
-  clear: both;
-  margin-bottom: 15px;
-  padding-left: 15px;
-  font-size: 12px;
-}
-
-.version > .stats code {
-  padding: 0 2px;
-  font-size: 10px;
-}
-
 .version .more-git-commits,
+.version .not-available-git-commits,
 .version .no-pending-changes {
+  margin-bottom: 0;
+  color: #ccc;
+}
+
+.version .hidden-git-submodule-changes {
   margin-bottom: 0;
   color: #ccc;
 }

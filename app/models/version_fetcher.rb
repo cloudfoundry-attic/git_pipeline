@@ -16,7 +16,8 @@ class VersionFetcher
   def version_from_git_tags(git_tag_from, git_tag_to)
     git_log = GitLog.from_symbolic_range(
       @git_repo, git_tag_from.name, git_tag_to.name)
-    Stage.new("Release #{git_tag_to.name}", nil, git_log)
+    gsm_log = GitSubmoduleChangeLog.from_git_log(@git_repo, git_log)
+    Version.new("Release #{git_tag_to.name}", git_log, gsm_log)
   end
 
   def fetched_git_tags

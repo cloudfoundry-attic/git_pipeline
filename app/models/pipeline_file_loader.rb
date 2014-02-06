@@ -12,7 +12,8 @@ class PipelineFileLoader
 
     stages = pipeline_hash["stages"].map do |stage_hash|
       git_log = build_git_log(stage_hash["git_log"], git_repo)
-      stage   = build_stage(stage_hash, git_log)
+      gsc_log = build_git_submodule_change_log(git_repo, git_log)
+      stage   = build_stage(stage_hash, git_log, gsc_log)
     end
 
     versions = build_versions(pipeline_hash["versions"], git_repo)
@@ -25,7 +26,7 @@ class PipelineFileLoader
   def read_file
     YAML.load_file(@file_path)
   rescue SystemCallError => e
-    raise LoadError, e.message
+    raise LoadError, e.inspect
   end
 
   def build_pipeline(hash, git_repo, stages, versions)
@@ -34,15 +35,19 @@ class PipelineFileLoader
   end
 
   def build_git_repo(hash)
-    GitRepo.new(hash["local_dir"], hash["github_url"])
+    GitRepo.from_fs(hash["local_dir"], hash["github_url"])
   end
 
-  def build_stage(hash, git_log)
-    Stage.new(hash["name"], hash["ci_url"], git_log)
+  def build_stage(hash, git_log, git_submodule_change_log)
+    Stage.new(hash["name"], hash["ci_url"], git_log, git_submodule_change_log)
   end
 
   def build_git_log(hash, git_repo)
     GitLog.from_symbolic_range(git_repo, hash["from"], hash["to"])
+  end
+
+  def build_git_submodule_change_log(git_repo, git_log)
+    GitSubmoduleChangeLog.from_git_log(git_repo, git_log)
   end
 
   def build_versions(hash, git_repo)
