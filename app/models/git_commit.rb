@@ -17,7 +17,7 @@ class GitCommit
   end
 
   def message_rest
-    @message_rest ||= message.split("\n")[1..-1].join("\n").strip
+    @message_rest ||= Array(message.split("\n")[1..-1]).join("\n").strip
   end
 
   def author_initials
