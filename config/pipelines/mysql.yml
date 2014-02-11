@@ -1,0 +1,23 @@
+name: Mysql pipeline
+git_repo:
+  local_dir: /tmp/cf-mysql-release
+  github_url: https://github.com/cloudfoundry/cf-mysql-release
+
+stages:
+  - name: "[dijon] Pending deploy"
+    git_log:
+      from: origin/dijon-deployed
+      to:   origin/master
+
+  - name: "[dijon] Pending NYET"
+    git_log:
+      from: origin/dijon-passed
+      to:   origin/dijon-deployed
+
+  - name: "[a1] Pending deploy"
+    git_log:
+      from: origin/a1-deployed
+      to:   origin/release-candidate
+
+versions:
+  name_pattern: \Av(?<number>\d+)(-.*)?\z
